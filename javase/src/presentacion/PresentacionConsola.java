@@ -6,6 +6,13 @@ import pojos.Usuario;
 public class PresentacionConsola {
 
 	public static void main(String[] args) {
+		Usuario usuario = pedirUsuario();
+		
+		System.out.println(usuario);
+
+	}
+
+	private static Usuario pedirUsuario() {
 		System.out.print("ID: ");
 		Long id = Consola.leerLong();
 		
@@ -16,9 +23,7 @@ public class PresentacionConsola {
 		String password = Consola.leerLinea();
 		
 		Usuario usuario = new Usuario(id, email, password);
-		
-		System.out.println(usuario.toString());
-
+		return usuario;
 	}
 
 }
