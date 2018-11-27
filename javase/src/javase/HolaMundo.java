@@ -33,7 +33,6 @@ public class HolaMundo {
 		@SuppressWarnings("unused")
 		boolean bool;
 		bool=true;// false
-		
 //		Caracter
 		@SuppressWarnings("unused")
 		char c;
