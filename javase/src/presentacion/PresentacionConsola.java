@@ -1,14 +1,29 @@
 package presentacion;
 
+import accesodatos.CrudAble;
+import accesodatos.UsuarioDaoArrayList;
 import biblioteca.Consola;
 import pojos.Usuario;
 
 public class PresentacionConsola {
 
 	public static void main(String[] args) {
-		Usuario usuario = pedirUsuario();
+		CrudAble<Usuario> usuarios = new UsuarioDaoArrayList();
 		
-		System.out.println(usuario);
+		for(Usuario usuario: usuarios.getAll()) {
+			System.out.println(usuario);
+		}
+		
+		System.out.println(usuarios.getById(1L));
+		
+//		usuarios.insert(pedirUsuario());
+		usuarios.insert(new Usuario(3L, "paco@paco", "contra"));
+		usuarios.update(new Usuario(3L, "paco@paco", "contracambiada"));
+		usuarios.delete(2L);
+		
+//		Usuario usuario = pedirUsuario();
+//		
+//		System.out.println(usuario);
 
 	}
 

@@ -10,7 +10,10 @@ public class UsuarioDaoArrayList implements CrudAble<Usuario> {
 	private ArrayList<Usuario> usuarios = new ArrayList<>();
 	
 	
-
+public UsuarioDaoArrayList() {
+	usuarios.add(new Usuario(1L, "", ""));
+	usuarios.add(new Usuario(2L, "", ""));
+}
 	@Override
 	public List<Usuario> getAll() {
 		return usuarios;
@@ -41,8 +44,7 @@ public class UsuarioDaoArrayList implements CrudAble<Usuario> {
 			if(usuarios.get(i).getId() == usuario.getId()) {
 				posicionId = i;
 			}
-			
-			if(usuarios.get(i).getEmail().equals(usuario.getEmail())) {
+			else if(usuarios.get(i).getEmail().equals(usuario.getEmail())) {
 				throw new AccesoDatosException("Usuario no encontrado para modificar");
 			}
 				
