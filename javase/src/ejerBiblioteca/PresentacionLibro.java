@@ -42,7 +42,7 @@ public class PresentacionLibro {
 		}
 		}while(errorIsbn);
 		
-		libro.setPrecio(Consola.leerLong());
+		libro.setPrecio(Consola.leerLinea());
 		
 		return libro;
 	}
