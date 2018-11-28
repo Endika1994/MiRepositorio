@@ -6,10 +6,13 @@ public class Usuario {
 	private String email,password;
 	
 	public Usuario(Long id, String email, String password) {
-		super();
-		this.id = id;
-		this.email = email;
-		this.password = password;
+		setId(id);
+		setEmail(email);
+		setPassword(password);
+	}
+
+	public Usuario() {
+		
 	}
 
 	public Long getId() {
@@ -25,6 +28,13 @@ public class Usuario {
 	}
 
 	public void setEmail(String email) {
+		if(email == null || email.trim().length() == 0) {
+			throw new PojoException("No se admiten emails vacios o nulos");
+		}
+		
+		if(!email.matches("\\w+@\\w+\\.\\w+")){
+			throw new PojoException("El formato del email no es el correcto");
+		}
 		this.email = email;
 	}
 

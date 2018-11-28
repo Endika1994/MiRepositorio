@@ -28,16 +28,26 @@ public class PresentacionConsola {
 	}
 
 	private static Usuario pedirUsuario() {
-		System.out.print("ID: ");
-		Long id = Consola.leerLong();
+		Usuario usuario = new Usuario();
 		
-		System.out.print("Email: ");
-		String email = Consola.leerLinea();
 		
-		System.out.print("Contraseña: ");
-		String password = Consola.leerLinea();
+		usuario.setId(Consola.leerLong());
 		
-		Usuario usuario = new Usuario(id, email, password);
+		boolean errorEmail;
+		do {
+			errorEmail = false;
+		
+		try {
+			usuario.setEmail(Consola.leerLinea());
+		} catch (Exception e) {
+			errorEmail=true;
+			System.out.println(e.getMessage());
+		}
+		}while(errorEmail);
+		
+		usuario.setPassword(Consola.leerLinea());
+		
+		
 		return usuario;
 	}
 
