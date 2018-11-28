@@ -1,5 +1,7 @@
 package presentacion;
 
+import java.util.ArrayList;
+
 import accesodatos.CrudAble;
 import accesodatos.UsuarioDaoArrayList;
 import biblioteca.Consola;
@@ -8,6 +10,18 @@ import pojos.Usuario;
 public class PresentacionConsola {
 
 	public static void main(String[] args) {
+//		SIN CAPA DE ACCESO A DATOS
+		ArrayList<Usuario> users = new ArrayList<>();
+		users.add(pedirUsuario());
+		
+		for(Usuario usuario : users) {
+			System.out.println(usuario);
+		}
+		
+		
+		
+		
+		//CON CAPA DE ACCESO A DATOS
 		CrudAble<Usuario> usuarios = new UsuarioDaoArrayList();
 		
 		for(Usuario usuario: usuarios.getAll()) {
