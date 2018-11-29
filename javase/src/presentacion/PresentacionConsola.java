@@ -8,18 +8,21 @@ import biblioteca.Consola;
 import pojos.Usuario;
 
 public class PresentacionConsola {
-
+	
+	 private static ArrayList<Usuario> users = new ArrayList<>();
+	 
 	public static void main(String[] args) {
 //		SIN CAPA DE ACCESO A DATOS
-		ArrayList<Usuario> users = new ArrayList<>();
-		users.add(pedirUsuario());
 		
-		for(Usuario usuario : users) {
-			System.out.println(usuario);
-		}
+		String opcion;
 		
-		
-		
+		do {
+			mostrarMenu();
+			
+			opcion = Consola.leerLinea("Dime que opcion quieres");
+			
+			procesarOpcion(opcion);
+		} while(!"0".equals(opcion));
 		
 		//CON CAPA DE ACCESO A DATOS
 		CrudAble<Usuario> usuarios = new UsuarioDaoArrayList();
@@ -39,6 +42,47 @@ public class PresentacionConsola {
 //		
 //		System.out.println(usuario);
 
+	}
+
+//	METODOS
+	
+	private static void procesarOpcion(String opcion) {
+		switch(opcion) {
+		case "0" : System.out.println("Salir");
+		case "1" : listado(); break;
+		case "2" : alta(); break;
+		// TODO: Otras opciones
+		default : System.out.println("No existe esa opcion");
+		
+		}
+	}
+
+	private static void mostrarMenu() {
+		System.out.println("LIBROS");
+		System.out.println("----------");
+		System.out.println("1. LISTADO");
+		System.out.println("2. ALTA");
+		// TODO: Resto de opciones
+		System.out.println("0. SALIR");
+	}
+
+	private static void listado() {
+		for(Usuario usuario : users) {
+			System.out.println(usuario);
+		}
+		
+	}
+
+//	private static void modificacion() {
+//		System.out.println("Modificacion");
+//		
+//	}
+
+	private static void alta() {
+		System.out.println("Alta");
+		users.add(pedirUsuario());
+		
+		
 	}
 
 	private static Usuario pedirUsuario() {
