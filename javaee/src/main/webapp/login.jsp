@@ -23,6 +23,7 @@
 			
 			<p>
 				<button>Login</button>
+				<%= request.getAttribute("Error")!=null ? request.getAttribute("Error" ) : "" %>
 			</p>
 		</fieldset>
 		
