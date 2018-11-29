@@ -1,3 +1,4 @@
+package com.ipartek.formacion.pojos;
 
 
 public class PojoException extends RuntimeException {
