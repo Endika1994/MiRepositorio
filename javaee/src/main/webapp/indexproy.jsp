@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import = "com.ipartek.formacion.pojos.Proyecto, java.util.ArrayList"%>
     
-    <%
+ <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+
+ 
+ <%
  Object objeto = session.getAttribute("proyecto");
  Proyecto proyecto = (Proyecto)objeto;
  
  Object oProyectos = request.getAttribute("proyectos");
  ArrayList<Proyecto> proyectos = (ArrayList<Proyecto>) oProyectos;
- %>   
+ %>  
+  
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -65,10 +69,8 @@
     
     <h2>Últimos Proyectos</h2>
     	<%for(Proyecto p : proyectos) { %>
-			
 		
-    
-    <article>
+	<article>
        
         <p><%= p.getImagen() %></p>
         
@@ -79,9 +81,9 @@
         <p><%= p.getDescripcion() %></p>
         
         <p><%= p.getLinkimg() %></p>
-        
+       
+     
     </article>
-    
     <% } %>
 </section>   
     

@@ -24,8 +24,12 @@ public class ProyectoServlet extends HttpServlet {
 		
 		Proyecto proyecto;
 		
-		ArrayList <Proyecto> proyectos = new ArrayList<Proyecto>();
 		
+		@SuppressWarnings("unchecked")
+		ArrayList<Proyecto> proyectos = (ArrayList<Proyecto>) request.getServletContext().getAttribute("proyectos");
+		
+		if(proyectos == null) {
+		proyectos = new ArrayList<Proyecto>();
 		proyectos.add(new Proyecto("Proyecto1","media/proyecto-1.jpg", "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."
 				+ " Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.", "Leer Mas"));
 		
@@ -35,7 +39,9 @@ public class ProyectoServlet extends HttpServlet {
 		proyectos.add(new Proyecto("Proyecto3","media/proyecto-3.jpg", "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."
 				+ " Vestibulum tortor quam, feugiat vitae, ultricies eget.", "Leer Mas"));
 		
-		request.setAttribute("proyectos", proyectos);
+		request.getServletContext().setAttribute("proyectos", proyectos);
+		}
+		
 		request.getRequestDispatcher("indexproy.jsp").forward(request, response);
 	}
 
