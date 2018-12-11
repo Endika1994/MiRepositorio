@@ -1,17 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import = "com.ipartek.formacion.pojos.Proyecto, java.util.ArrayList"%>
-    
- <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-
- 
- <%
- Object objeto = session.getAttribute("proyecto");
- Proyecto proyecto = (Proyecto)objeto;
- 
- Object oProyectos = request.getAttribute("proyectos");
- ArrayList<Proyecto> proyectos = (ArrayList<Proyecto>) oProyectos;
- %>  
-  
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.ipartek.formacion.pojos.Proyecto" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -68,23 +57,27 @@
 <section>
     
     <h2>Últimos Proyectos</h2>
-    	<%for(Proyecto p : proyectos) { %>
-		
-	<article>
+    
+    <c:forEach items="${proyectos.values()}" var="proyecto">
+    <article>
        
-        <p><%= p.getImagen() %></p>
+        <p><img src="media/proyecto-${proyecto.id}.jpg" alt=""></p>
         
         <header>
-            <h3><%= p.getTituloh2() %></h3>
+            <h3>${proyecto.titulo} <a href="editarproyecto?id=${proyecto.id}">Editar</a>
+            <a href="borrarproyecto?id=${proyecto.id}" onclick="return confirm('¿Estás seguro de borrar ${proyecto.titulo}?')">Borrar</a></h3>
         </header>
         
-        <p><%= p.getDescripcion() %></p>
+        <p>${proyecto.descripcion}</p>
         
-        <p><%= p.getLinkimg() %></p>
-       
-     
+        <p><a href="#">leer más</a></p>
+        
     </article>
-    <% } %>
+    </c:forEach>
+    
+    <p>
+    	<a href="nuevoproyecto">Nuevo proyecto</a>
+   	</p>
 </section>   
     
     

@@ -1,25 +1,31 @@
 package com.ipartek.formacion.pojos;
 
 public class Proyecto {
-	private String tituloh2;
-	private String imagen;
+	private Long id;
+	private String titulo;
 	private String descripcion;
-	private String linkimg;
 	
+	public Proyecto(Long id, String titulo, String descripcion) {
+		super();
+		this.id = id;
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+	}
 	
-	public Proyecto (String tituloh2, String imagen, String descripcion, String linkimg) {
-		setTituloh2(tituloh2);
-		setImagen(imagen);
-		setDescripcion(descripcion);
-		setLinkimg(linkimg);
+	public Long getId() {
+		return id;
 	}
 
-	public String getImagen() {
-		return imagen;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	public String getDescripcion() {
@@ -30,25 +36,8 @@ public class Proyecto {
 		this.descripcion = descripcion;
 	}
 
-	public String getTituloh2() {
-		return tituloh2;
-	}
-
-	public void setTituloh2(String tituloh2) {
-		this.tituloh2 = tituloh2;
-	}
-
-	public String getLinkimg() {
-		return linkimg;
-	}
-
-	public void setLinkimg(String linkimg) {
-		this.linkimg = linkimg;
-	}
-
 	@Override
 	public String toString() {
-		return "Proyecto [tituloh2=" + tituloh2 + ", imagen=" + imagen + ", descripcion="
-				+ descripcion + ", linkimg=" + linkimg + "]";
+		return "Proyecto [id=" + id + ", titulo=" + titulo + ", descripcion=" + descripcion + "]";
 	}
 }
