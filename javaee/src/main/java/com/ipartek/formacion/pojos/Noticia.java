@@ -9,13 +9,22 @@ public class Noticia {
 	private String autor;
 	private String texto;
 	
+	private String errorId;
+	private String errorTitular;
+	private String errorFecha;
+	private String errorAutor;
+	private String errorTexto;
+	
+	private boolean hayErrores = false;
+	
+	
 	public Noticia(Long id, String titular, Date fecha, String autor, String texto) {
 		super();
-		this.id = id;
-		this.titular = titular;
-		this.fecha = fecha;
-		this.autor = autor;
-		this.texto = texto;
+		setId(id);
+		setTitular(titular);
+		setFecha(fecha);
+		setAutor(autor);
+		setTexto(texto);
 	}
 
 	public Long getId() {
@@ -23,6 +32,10 @@ public class Noticia {
 	}
 
 	public void setId(Long id) {
+		if(id<= 0) {
+			//throw new PojoException("No se admiten valores de id menores que 0");
+			setErrorId("El id debe valer mas que 0");
+		}
 		this.id = id;
 	}
 
@@ -31,6 +44,9 @@ public class Noticia {
 	}
 
 	public void setTitular(String titular) {
+		if(titular.trim().length() == 0) {
+			setErrorTitular("No se admiten titulares vacios");
+		}
 		this.titular = titular;
 	}
 
@@ -39,6 +55,12 @@ public class Noticia {
 	}
 
 	public void setFecha(Date fecha) {
+		
+		if(fecha == null) {
+			this.fecha = new Date();
+		}else if(fecha.after(new Date())) {
+			setErrorFecha("No se admiten fechas futuras");
+		}
 		this.fecha = fecha;
 	}
 
@@ -47,6 +69,9 @@ public class Noticia {
 	}
 
 	public void setAutor(String autor) {
+		if(autor == null || autor.trim().length() == 0) {
+			setErrorAutor("No se admiten autores nulos");
+		}
 		this.autor = autor;
 	}
 
@@ -55,7 +80,57 @@ public class Noticia {
 	}
 
 	public void setTexto(String texto) {
+		
+		//\w+\.\w+.\w+.
+		if(!texto.matches("\\w+\\.\\w+.\\w+.")){
+			
+		}
 		this.texto = texto;
+	}
+
+	public String getErrorId() {
+		return errorId;
+	}
+
+	public void setErrorId(String errorId) {
+		hayErrores = true;
+		this.errorId = errorId;
+	}
+
+	public String getErrorTitular() {
+		return errorTitular;
+	}
+
+	public void setErrorTitular(String errorTitular) {
+		hayErrores = true;
+		this.errorTitular = errorTitular;
+	}
+
+	public String getErrorFecha() {
+		return errorFecha;
+	}
+
+	public void setErrorFecha(String errorFecha) {
+		hayErrores = true;
+		this.errorFecha = errorFecha;
+	}
+
+	public String getErrorAutor() {
+		return errorAutor;
+	}
+
+	public void setErrorAutor(String errorAutor) {
+		hayErrores = true;
+		this.errorAutor = errorAutor;
+	}
+
+	public String getErrorTexto() {
+		return errorTexto;
+	}
+
+	public void setErrorTexto(String errorTexto) {
+		hayErrores = true;
+		this.errorTexto = errorTexto;
 	}
 
 	@Override

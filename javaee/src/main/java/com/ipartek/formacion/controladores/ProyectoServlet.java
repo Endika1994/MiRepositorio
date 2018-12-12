@@ -37,7 +37,7 @@ public class ProyectoServlet extends HttpServlet {
 			application.setAttribute("proyectos", proyectos);
 		}
 		
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		request.getRequestDispatcher("indexproy.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
